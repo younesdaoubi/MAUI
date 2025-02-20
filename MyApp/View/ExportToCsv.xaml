@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             xmlns:model="clr-namespace:MyApp.Model"
+             x:Class="MyApp.View.ExportToCsv"
+             Title="ExportToCsv">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to ExportToCsv page !"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <ScrollView Grid.Column="1">
+            <StackLayout Padding="30,0" Spacing="25">
+                <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                    <Label x:Name="clockLabel" Text="00:00:00" FontSize="16" HorizontalOptions="Start" Margin="0,10,0,0" />
+                    <Label Text="Project Version : JUIN 2024" HorizontalOptions="Center" Margin="300,10,0,0"/>
+                </HorizontalStackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                    <CheckBox x:Name="nameCheckBox" IsChecked="{Binding IsNameChecked}" />
+                    <Label Text="Include Name" VerticalOptions="Center" Margin="5,0,0,0" />
+                    <CheckBox x:Name="descriptionCheckBox" IsChecked="{Binding IsDescriptionChecked}" />
+                    <Label Text="Include Description" VerticalOptions="Center" Margin="5,0,0,0" />
+                    <CheckBox x:Name="originCheckBox" IsChecked="{Binding IsOriginChecked}" />
+                    <Label Text="Include Origin" VerticalOptions="Center" Margin="5,0,0,0" />
+                    <CheckBox x:Name="idCheckBox" IsChecked="{Binding IsIdChecked}" />
+                    <Label Text="Include Id" VerticalOptions="Center" Margin="5,0,0,0" />
+                </StackLayout>
+
+                <Button Text="Download CSV" Command="{Binding ExportCSVCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+            </StackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

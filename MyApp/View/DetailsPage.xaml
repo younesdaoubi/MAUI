@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maui="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             x:Class="MyApp.View.DetailsPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ContentPage.BindingContext>
+        <viewmodel:DetailsViewModel/>
+    </ContentPage.BindingContext>
+
+<!--
+    <HorizontalStackLayout Spacing="10">
+        <Button Text="m" Command="{Binding DimAgeComm}" />
+        <Button Text="p" Command="{Binding AugageComm}" />
+    </HorizontalStackLayout> -->
+
+    <ScrollView>
+        
+
+        <VerticalStackLayout Padding="20" Spacing="25">
+            
+            <VerticalStackLayout>
+                <Button Text="Retour" 
+    HorizontalOptions="Start" 
+    VerticalOptions="Start" 
+    Clicked="OnBackButtonClicked" />
+            </VerticalStackLayout>
+
+
+
+
+            <!-- Image Section -->
+            <Image Source="{Binding AnimalPicture}" 
+                   Aspect="AspectFit" 
+                   HeightRequest="180"  
+                HorizontalOptions="FillAndExpand"/>
+
+                <!-- Details Section -->
+                <Frame HasShadow="True" CornerRadius="10" Padding="15" BackgroundColor="{DynamicResource FrameBackgroundColor}">
+                    <Grid ColumnDefinitions="auto, *" RowDefinitions="auto, auto, auto, auto, auto, auto">
+                        <!-- Ajustement des lignes pour chaque entrée afin d'éviter le chevauchement -->
+                        <Label Text="Name :" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="0" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="{Binding AnimalName}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <Label Text="Origin :" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="{Binding AnimalOrigin}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <Label Text="Top Speed:" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="2" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="{Binding AnimalTopSpeed, StringFormat='{0} km/h'}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="2" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <Label Text="Weight:" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="{Binding AnimalWeight, StringFormat='{0} kg'}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <Label Text="Life Expectancy:" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+                        <Label Text="{Binding AnimalLifeExpectancy, StringFormat='{0} years'}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"/>
+
+                        <Label Text="Description:" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="5" Grid.Column="0" VerticalOptions="Start"/>
+                        <Label Text="{Binding AnimalDescription}" FontSize="18" TextColor="{DynamicResource SecondaryTextColor}" Grid.Row="5" Grid.Column="1" VerticalOptions="Start" LineBreakMode="WordWrap" MaxLines="5"/>
+                    </Grid>
+                </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+<!-- <Label Text="born :" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="3" Grid.Column="0" VerticalOptions="Center"/>
+        <ListView ItemsSource="{Binding MyObservableBorn}" Grid.Row="3" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Label Text="age :" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryTextColor}" Grid.Row="4" Grid.Column="0" VerticalOptions="Center"/>
+        <ListView ItemsSource="{Binding MyObservableAge}" Grid.Row="4" Grid.Column="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding .}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>  --> 
+
+ 
+    

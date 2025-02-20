@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             xmlns:model="clr-namespace:MyApp.Model"
+             x:Class="MyApp.View.DbPage">
+
+
+    <Grid ColumnDefinitions="*,*">
+
+
+        <CollectionView ItemsSource="{Binding MyObservableFelines}"
+                        SelectionMode="None"
+                        Grid.Column="0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Feline">
+                    <Border StrokeThickness="4"
+                    StrokeShape="RoundRectangle 10,10,10,10"
+                    Padding="10">
+                        <Grid HeightRequest="100" ColumnDefinitions="*">
+                            <Label Text="{Binding Name}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <Button Text="Save"
+                Grid.Column="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Command="{Binding SaveCommand}"/>
+
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,81 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MyApp.ViewModel"
+             xmlns:model="clr-namespace:MyApp.Model"
+             x:Class="MyApp.View.MainPage">
+
+    <Grid ColumnDefinitions="200, *">
+        <ScrollView Grid.Column="0">
+            <StackLayout Padding="10" Spacing="15">
+                
+                 <Label Text="{Binding CurrentUser.Username}" FontSize="20" HorizontalOptions="Center" />
+
+                <!-- Boutons de connexion et d'inscription -->
+                <Button Text="Login" Command="{Binding DisplayLoginCommand}" IsVisible="{Binding IsNotLoggedIn}"/>
+                <Button Text="Sign Up" Command="{Binding DisplaySignupCommand}" IsVisible="{Binding IsNotLoggedIn}"/>
+
+                <Button Text="Add random felines" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=AddRandomElementsCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="Form Page" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=AddElementCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="Load Json" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=LoadJSONCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <!--<Button Text="Download CSV" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ExportCSVCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/> -->
+                <Button Text="Display Charts" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DisplayChartsCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="DB" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DBCallCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="PopUp" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=PopUpCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="Login" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DisplayLoginCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button Text="ExportToCsv" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=ExportToCsvCommand}" BorderWidth="1" BackgroundColor="Transparent" TextColor="White" IsEnabled="{Binding IsNotBusy}" HeightRequest="40"/>
+                <Button 
+    Text="TESTT" 
+    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TesttCommand}" 
+    BorderWidth="1" 
+    BackgroundColor="Green" 
+    TextColor="White" 
+    IsEnabled="{Binding IsNotBusy}" 
+    HeightRequest="40"/>
+                <Button Text="TEST" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TestCommand}" HorizontalOptions="Center"
+                BorderWidth="2" 
+                BackgroundColor="Transparent" BorderColor="Green" TextColor="Green"
+                IsEnabled="{Binding IsNotBusy}"/>
+
+            </StackLayout>
+        </ScrollView>
+        <ScrollView Grid.Column="1">
+            <StackLayout Padding="30,0" Spacing="25">
+                <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                    <Label x:Name="clockLabel" Text="00:00:00" FontSize="16" HorizontalOptions="Start" Margin="0,10,0,0" />
+                    <Label Text="Project Version : JUIN 2024" HorizontalOptions="Center" Margin="300,10,0,0"/>
+                </HorizontalStackLayout>
+
+                <Label Text="{Binding CodeBar}" FontSize="100" TextColor="White" HorizontalOptions="Center" />
+                <CollectionView ItemsSource="{Binding MyObservableFelines}"
+                                SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="3"
+                                         VerticalItemSpacing="10"
+                                         HorizontalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Feline">
+                            <Frame CornerRadius="10" Padding="10" BorderColor="White" Margin="5">
+                                <StackLayout>
+                                    <ImageButton Source="{Binding Picture}"
+                                                 Aspect="AspectFit"
+                                                 HeightRequest="100"
+                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=GoToDetailsCommand}"
+                                                 CommandParameter="{Binding .}"/>
+                                    <Label Text="{Binding Path=Name,StringFormat='Name: {0:S2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=Description,StringFormat='Description: {0:S2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=Origin,StringFormat='Origin: {0:S2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=Id,StringFormat='Id: {0:S2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=Weight,StringFormat='Weight: {0:F2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=TopSpeed,StringFormat='Top Speed: {0:F2}'}" FontSize="15"/>
+                                    <Label Text="{Binding Path=LifeExpectancy,StringFormat='Life Expectancy: {0:S2}'}" FontSize="15"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
